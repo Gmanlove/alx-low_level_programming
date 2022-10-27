@@ -4,23 +4,22 @@ include "main.h"
  * @s: input string.
  * Return: the pointer to dest.
  */
-char *rot13(char *s)
+char *rot13(char *z)
 {
-	int i = 0;
+	int i, j;
+	char a[] = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ";
+	char n[] = "nopqrstuvwxyzabcdefghijklmNOPQRSTUVWXYZABCDEFGHIJKLM";
 
-	while (s[i] != '\0')
+	for (i = 0; z[i] != '\0'; i++)
 	{
-		while ((s[i] >= 'a' && s[i] <= 'z') ||
-				(s[i] >= 'A' && s[i] <= 'Z'))
+		for (j = 0; j < 56; j++)
 		{
-			if ((s[i] >= 'a' && s[i] <= 'm') ||
-					(s[i] >= 'A' && s[i] <= 'M'))
-				s[i] += 13;
-			else
-				s[i] -= 13;
-			i++;
+			if (z[i] == a[j])
+			{
+				z[i] = n[j];
+				break;
+			}
 		}
-		i++;
 	}
-	return (s);
+	return (z);
 }
